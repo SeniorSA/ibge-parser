@@ -56,7 +56,7 @@ def obter_dados_ibge(ano_selecionado, estados_selecionados, modalidades_selecion
     # cria pasta temporaria no sistema
     pasta_temp = criar_pasta_temporaria()
    
-    # obtem a pasta de trabalho para salvar o output (csv)
+    # obtem a pasta de trabalho para salvar o output (csv) 
     pasta_trab = obter_diretorio_trabalho()
    
     # captura o ano selecionado
@@ -96,3 +96,19 @@ def obter_dados_ibge(ano_selecionado, estados_selecionados, modalidades_selecion
 
     # apaga a pasta criada no diretório temporario                               
     remover_pasta_temporaria(pasta_temp)
+
+    def obter_especificacao_coluna(palavra_de_busca, modalidades_selecionadas):
+        
+        for modalidade in modalidades_selecionadas:
+
+            doc=pd.read_csv('{}/Documentacao_{}.csv'.format(obter_diretorio_trabalho(), modalidade))
+
+            aux=doc.loc[doc['NOME'].str.contains(palavra_de_busca,case=False),['VAR','NOME']]
+
+            for index, row in aux.iterrows():
+                try :              
+                    log.info('\n\n\nProcure por {} na modalidade de {} para: \n\n{} \n\nCom descrição da coluna de \n{}'.format(row['VAR'], modalidade, 
+                    row['NOME'].split(':')[0]," ".join(row['NOME'].split(':')[1:])))
+                except IndexError:
+                    log.info('\n\n\nProcure por {} na modalidade de {} para: \n\n{}\n\nCom descrição da coluna de \n{}'.format(row['VAR'], modalidade, 
+                    row['NOME'].split(':')[0:],"sem descriçao"))
