@@ -2,6 +2,7 @@ import os
 import requests
 import tempfile
 import pandas as pd
+import ibgeparser.enums
 import ibgeparser.log as log
 import zipfile, urllib.request, shutil
 from urllib.request import urlopen
