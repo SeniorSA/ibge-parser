@@ -1,3 +1,4 @@
 **/build/
 **/dist/
 **/ibge_parser.egg-info/
+./ibgeparser/__pychache__/
