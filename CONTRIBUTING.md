@@ -13,4 +13,14 @@ Quando houver a necessidade de abertura de novas _issues_, estas devem ser class
 
 Estas classificações devem ser indicadas por meio de _labels_ do GitHub.
 
-Para descrição da issue, deve ser seguido o _template_ padrão do repositório.
+## Como descrever uma issue?
+
+Para criar uma _issue_ informe uma descrição geral sobre o que se trata. Especifique o que se busca atingir, caso seja um bug, especifique qual o erro encontrado. Caso seja uma melhoria/funcionalidade ou documentação, especifique o que se espera que seja realizado.
+
+## Contribuindo com código fonte
+
+O primeiro passo é fazer um _fork_ do repositório em sua conta do GitHub. 
+
+Após o _fork_ realizado, clone o repositório da sua conta e faça as alterações no seu repositório. Feito todo o processo, abra um _pull request_ do seu repositório para o repositório principal.
+
+Suas alterações serão revisadas por um de nossos contribuidores e podem ser aprovadas ou podem ser solicitadas modificações.

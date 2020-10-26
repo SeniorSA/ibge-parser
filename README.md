@@ -36,7 +36,7 @@ if __name__ == "__main__":
     # obeter dados
     ibgeparser.obter_dados_ibge(ano, estados, modalidades)
 ```
-O método `obter_dados_ibge` retorna os dados do censo no formato `.csv` das modalidades e estados solicitados. Utitlize os `enums` para selecionar corretamente as opções desejadas.
+O método `obter_dados_ibge` retorna os dados do censo no formato `.csv` das modalidades e estados solicitados. Utitlize os `enums` para selecionar corretamente as opções desejadas. Os arquivos `csv` são salvos na pasta `microdados-ibge` dentro do projeto.
 
 #### Parâmetros
 - ano: Enum.Ano
@@ -64,15 +64,10 @@ if __name__ == "__main__":
 ```
 
 O método `obter_especificacao_coluna` retorna a especificação da coluna das modalidades solicitadas. Utitlize os `enums` para selecionar corretamente as opções desejadas.
-Os arquivos `csv` são salvos na pasta `microdados-ibge` dentro do projeto.
 
 #### Parâmetros
 - palavra_de_busca: str
 - modalidades: list(Enum.Modalidades)
-  
-## Documentação
-
-A documentação completa pode ser conferida em [IBGE Parser - Read the Docs]()
 
 ## Contribuindo
 
