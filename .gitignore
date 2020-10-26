@@ -1,4 +1,11 @@
 **/build/
 **/dist/
 **/ibge_parser.egg-info/
-./ibgeparser/__pychache__/
+**/venv/
+**/logs/
+**/.vscode/
+**/__pycache__/
+**/microdados-ibge/
+**__main__.py
+*.csv
+*.txt

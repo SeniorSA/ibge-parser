@@ -1,24 +1,28 @@
 from logzero import logger, logfile
 import os
 
-DEBUG = False 
+DEBUG = False
 
-def init():
-    pasta_log = '{}/logs'.format(os.getcwd())
-    if not os.path.exists(pasta_log):
-        os.makedirs(pasta_log)
+class _Log:
+    def init(self):
+        pasta_log = os.path.join(os.getcwd(),'logs')
+        if not os.path.exists(pasta_log):
+            os.makedirs(pasta_log)
 
-    logfile('{}/ibge_parser.log'.format(pasta_log), maxBytes=1e6, backupCount=3)
+        arquivo_log = os.path.join(pasta_log,'ibge_parser.log')
+        logfile(arquivo_log, maxBytes=1e6, backupCount=3)
 
-def exception(e):
-    logger.exception(e)
+        self.debug('Logs estão salvos em: {}'.format(arquivo_log))
 
-def info(s):
-    logger.info(s)
+    def exception(self, e):
+        logger.exception(e)
 
-def error(s):
-    logger.error(s)
+    def info(self, s):
+        logger.info(s)
 
-def debug(s):
-    if DEBUG:
-        logger.debug(s)
+    def error(self, s):
+        logger.error(s)
+
+    def debug(self, s):
+        if DEBUG:
+            logger.debug(s)
