@@ -1,11 +1,11 @@
 import setuptools
 
-with open("README.md", "r") as fh:
+with open(file="README.md", mode="r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setuptools.setup(
     name="ibge-parser",
-    version="1.0.0",
+    version="1.0.1",
     author="Senior Sistemas - Senior Labs",
     author_email="research@senior.com.br",
     description="IBGE Parser is a Python library to get microdata from IBGE - (Instituto Brasileiro de Geografia e Estatística) census and convert the data to readable CSV files.",
