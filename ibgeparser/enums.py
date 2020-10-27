@@ -23,7 +23,6 @@ class Estados(Enum):
     MINAS_GERAIS = [31,'Minas Gerais', 'MG']
     ESPIRITO_SANTO = [32, 'Espírito Santo', 'ES']
     RIO_DE_JANEIRO = [33,'Rio de Janeiro', 'RJ']
-    SAO_PAULO = [35, 'São Paulo', 'SP']
     SAO_PAULO_SP1 = ['35_outras', 'São Paulo', 'SP1']
     SAO_PAULO_SP2_RM = ['35_RMSP', 'São Paulo', 'SP2_RM']
     PARANA = [41,'Paraná', 'PR']
