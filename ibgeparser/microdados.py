@@ -149,37 +149,43 @@ class Microdados:
 
         # extraindo csv de todos os estados selecionados pelo usuario no pacote        
         for enum_estado in estados:
-            valor_estado, estado, sigla = enum_estado.value
+            try:
+                valor_estado, estado, sigla = enum_estado.value
 
-            log.info('Baixando informações do estado de {}'.format(estado))
-            
-            url = URL_MICRODADOS.format(descricao_ano, sigla)
-            log.debug('Arquivo referente ao estado de {} extraído de: {}'.format(estado, url))
+                log.info('Baixando informações do estado de {}'.format(estado))
+                
+                url = URL_MICRODADOS.format(descricao_ano, sigla)
+                log.debug('Arquivo referente ao estado de {} extraído de: {}'.format(estado, url))
 
-            # download dos dados do estado
-            arquivo_zip_estado = self.__download_arquivo(url, os.path.join(pasta_temporaria, url.split('/')[-1]))
-            log.debug('Arquivo zip do estado salvo em: {}'.format(arquivo_zip_estado))
-            
-            for enum_modalidade in modalidades:
-                valor_modalidade, descricao_modalidade = enum_modalidade.value
+                # download dos dados do estado
+                arquivo_zip_estado = self.__download_arquivo(url, os.path.join(pasta_temporaria, url.split('/')[-1]))
+                log.debug('Arquivo zip do estado salvo em: {}'.format(arquivo_zip_estado))
+                
+                for enum_modalidade in modalidades:
+                    try:
+                        valor_modalidade, descricao_modalidade = enum_modalidade.value
 
-                nome_arquivo_modalidade = 'Amostra_{}_{}.txt'.format(descricao_modalidade, str(valor_estado))
-                log.debug('Nome arquivo modalidade: {}'.format(nome_arquivo_modalidade))
+                        nome_arquivo_modalidade = 'Amostra_{}_{}.txt'.format(descricao_modalidade, str(valor_estado))
+                        log.debug('Nome arquivo modalidade: {}'.format(nome_arquivo_modalidade))
 
-                # extração do zip de dados do estado
-                arquivo_estado = self.__extrair_arquivo(arquivo_zip_estado, nome_arquivo_modalidade, pasta_temporaria)
-                log.debug('Arquivo do estado extraído em: {}'.format(arquivo_estado))
+                        # extração do zip de dados do estado
+                        arquivo_estado = self.__extrair_arquivo(arquivo_zip_estado, nome_arquivo_modalidade, pasta_temporaria)
+                        log.debug('Arquivo do estado extraído em: {}'.format(arquivo_estado))
 
-                # conversão para csv
-                data = pd.read_fwf(arquivo_estado, colspecs=div_columns[descricao_modalidade])
-                data.columns = ibge_datasets[descricao_modalidade]['VAR'].tolist()
+                        # conversão para csv
+                        data = pd.read_fwf(arquivo_estado, colspecs=div_columns[descricao_modalidade])
+                        data.columns = ibge_datasets[descricao_modalidade]['VAR'].tolist()
 
-                # salvando o csv
-                arquivo_csv = os.path.join(pasta_trabalho, '{}_{}.csv'.format(nome_arquivo_modalidade[:-4], sigla))
-                data.to_csv(arquivo_csv, encoding="utf-8-sig", header=header)
+                        # salvando o csv
+                        arquivo_csv = os.path.join(pasta_trabalho, '{}_{}.csv'.format(nome_arquivo_modalidade[:-4], sigla))
+                        data.to_csv(arquivo_csv, encoding="utf-8-sig", header=header)
 
-                log.info('Arquivo de {} de modalidade {} extraído'.format(sigla, descricao_modalidade))
-                log.debug('Arquivo de {} de modalidade {} extraído em: {}'.format(sigla, descricao_modalidade, arquivo_csv))
+                        log.info('Arquivo de {} de modalidade {} extraído'.format(sigla, descricao_modalidade))
+                        log.debug('Arquivo de {} de modalidade {} extraído em: {}'.format(sigla, descricao_modalidade, arquivo_csv))
+                    except Exception as e:
+                        log.error('Erro ao processar os dados de documentação: {}'.format(e))
+            except Exception as e:
+                log.error('Erro ao baixar os dados do estado: {}'.format(e))
 
         # apaga a pasta criada no diretório temporario                               
         self.__remover_pasta_temporariaoraria(pasta_temporaria)
