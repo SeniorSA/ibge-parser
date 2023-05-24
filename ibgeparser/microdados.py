@@ -12,8 +12,8 @@ from urllib.request import urlopen
 log = Log()
 log.init()
 
-URL_DOCUMENTACAO='ftp://ftp.ibge.gov.br/Censos/{}/Resultados_Gerais_da_Amostra/Microdados/Documentacao.zip'
-URL_MICRODADOS='ftp://ftp.ibge.gov.br/Censos/{}/Resultados_Gerais_da_Amostra/Microdados/{}.zip'
+URL_DOCUMENTACAO='https://ftp.ibge.gov.br/Censos/Censo_Demografico_{}/Resultados_Gerais_da_Amostra/Microdados/Documentacao.zip'
+URL_MICRODADOS='https://ftp.ibge.gov.br/Censos/Censo_Demografico_{}/Resultados_Gerais_da_Amostra/Microdados/{}.zip'
 ARQUIVO_LAYOUT='Layout_microdados_Amostra.xls'
 DIRETORIO_SAIDA='microdados-ibge'
 
